@@ -1,7 +1,6 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Empresa from '@model/Empresa';
 import Mesa from '@model/Mesa';
-import Qrcode from '@model/QrCode';
 
 @Index('pkey_vaga', ['id'], { unique: true })
 @Entity('vaga')
@@ -24,4 +23,7 @@ export default class Vaga {
 
   @Column({ name: 'cpf', type: 'varchar', length: 255 })
   cpf: string;
+
+  @Column({ name: 'confirmado', type: 'boolean', default: false })
+  confirmado: boolean;
 }

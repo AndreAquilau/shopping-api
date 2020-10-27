@@ -3,7 +3,7 @@ module.exports = {
   url: process.env.DATABASE_URL,
   synchronize: false,
   logging: false,
-  entities: [process.env.TYPEORM_ENTITIES || 'dist/models/**/*.js'],
+  entities: [process.env.TYPEORM_ENTITIES || 'dist/model/**/*.js'],
   migrations: [process.env.TYPEORM_MIGRATIONS || 'dist/database/migrations/**/*.js'],
   subcribers: [process.env.TYPEORM_SUBCRIBERS || 'dist/subcribers/**/*.js'],
   cli: {
