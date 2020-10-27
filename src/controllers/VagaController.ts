@@ -98,17 +98,29 @@ class VagaController {
 
   async verificar(resquest: Request, response: Response): Promise<any> {
     try {
+      console.log(`entrou1`);
       const repository = getRepository(Vaga);
       const repositoryMesa = getRepository(Mesa);
       const res = await repository.find().then(async (vagas) => {
-        vagas.filter(async (vaga, index, array) => {
+        console.log(`entrou2`);
+        vagas.map(async (vaga, index, array) => {
+          console.log(`entrou3`);
           if (isPast(new Date(vaga.expires)) && vaga.confirmado === false) {
-            await repositoryMesa.update({ id: vaga.id }, { ocupada: false });
+            await repositoryMesa
+              .update({ id: vaga.mesa.id }, { ocupada: false })
+              .then(async (row) => {
+                console.log(row.affected);
+                await repository.delete({ id: vaga.id });
+              })
+
+              .catch((err) => console.log(err));
           }
         });
       });
 
-      return response.status(200);
+      return response.status(200).json({
+        res,
+      });
     } catch (err) {
       return response.status(500).json({
         errors: [err],

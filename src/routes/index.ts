@@ -4,6 +4,7 @@ import routerMesa from '@routes/mesa.router';
 import routerQrCode from '@routes/qrcode.router';
 import routerUser from '@routes/user.router';
 import routerVaga from '@routes/vaga.router';
+import routerVerificar from '@routes/verificar.router';
 
 const router = Router();
 
@@ -19,5 +20,6 @@ router.use('/mesas', routerMesa);
 router.use('/qrcodes', routerQrCode);
 router.use('/users', routerUser);
 router.use('/vagas', routerVaga);
+router.use('/verificar', routerVerificar);
 
 export default router;
