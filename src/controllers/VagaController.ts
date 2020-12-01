@@ -50,8 +50,9 @@ class VagaController {
           expires: new Date(expires),
           expiresIni: new Date(expiresIni),
         })
-        .then(async () => {
+        .then(async (vaga) => {
           await repositoryMesa.update({ id: mesa.id }, { ocupada: true });
+          return vaga;
         });
 
       return response.status(201).json({
