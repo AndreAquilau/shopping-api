@@ -6,7 +6,11 @@ class MesaController {
   async index(resquest: Request, response: Response): Promise<any> {
     try {
       const repository = getRepository(Mesa);
-      const res = await repository.find();
+      const res = await repository.find({
+        order: {
+          id: 'ASC',
+        },
+      });
 
       return response.status(200).json({
         mesas: res,
